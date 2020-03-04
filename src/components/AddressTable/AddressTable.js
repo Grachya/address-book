@@ -1,4 +1,5 @@
 import React from 'react';
+import AddressRow from '../AddressRow/AddressRow';
 import './AddressTable.scss';
 
 const initialNewAddressState = {
@@ -68,7 +69,6 @@ class AddressTable extends React.Component {
         this.setState({
             newAddress: newAddressField
         });
-        console.log(this.state.newAddress);
     }
 
     render() {
@@ -77,15 +77,7 @@ class AddressTable extends React.Component {
                 <tbody>
                     {this.state.addressList.map((address, index) => {
                         return (
-                            <tr key={index} className="table__row">
-                                <td className="table__data table__data--name">{address.name}</td>
-                                <td className="table__data table__data--mail"><a href={"mailto:"+address.email}>{address.email}</a></td>
-                                <td className="table__data table__data--phone">{address.phone}</td>
-                                <td className="table__data table__data--actions">
-                                    <button>edit</button>
-                                    <button onClick={() => this.removeAdressById(address.id)}>remove {address.id}</button>
-                                </td>
-                            </tr>
+                            <AddressRow key={index} address={address} removeAdressById={this.removeAdressById}></AddressRow>
                         )
                     })}
                     <tr>

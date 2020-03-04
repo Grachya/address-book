@@ -1,9 +1,6 @@
 @import '../../common-styles/variables.scss';
 
 .table {
-  width: 100%;
-  border-collapse: collapse;
-
   &__data {
     border: 1px solid $border-color;
     padding: 10px;
