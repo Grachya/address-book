@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button/Button';
 
 function AddressView (props) {
     return (
@@ -7,8 +8,14 @@ function AddressView (props) {
             <td className="table__data table__data--mail"><a href={"mailto:"+props.address.email}>{props.address.email}</a></td>
             <td className="table__data table__data--phone">{props.address.phone}</td>
             <td className="table__data table__data--actions">
-                <button onClick={() => props.toggleAddressEdit(props.address.id)}>edit</button>
-                <button onClick={() => props.removeAddressById(props.address.id)}>remove {props.address.id}</button>
+                <Button 
+                    icon='edit'
+                    onClickHandler={() => props.toggleAddressEdit(props.address.id)}>
+                </Button>
+                <Button 
+                    icon='remove'
+                    onClickHandler={() => props.removeAddressById(props.address.id)}>
+                </Button>
             </td>
         </tr>
     )

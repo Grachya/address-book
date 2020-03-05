@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from '../Button/Button';
+
 function AddressForm (props) {
     return(
         <tr>
@@ -40,11 +42,20 @@ function AddressForm (props) {
                 {
                     props.address.isEditing ? (
                         <div>
-                            <button onClick={() => props.toggleAddressEdit(props.address.id)}>save</button>
-                            <button onClick={() => props.removeAddressById(props.address.id)}>remove</button>
+                            <Button 
+                                icon='save'
+                                onClickHandler={() => {props.toggleAddressEdit(props.address.id)}}>
+                            </Button>
+                            <Button 
+                                icon='remove'
+                                onClickHandler={() => props.removeAddressById(props.address.id)}>
+                            </Button>
                         </div>
                     ) : (
-                        <button onClick={() => {props.addNewAddress()}}>add</button>
+                        <Button 
+                            icon='add'
+                            onClickHandler={() => props.addNewAddress()} >
+                        </Button>
                     )  
                 }
                 
