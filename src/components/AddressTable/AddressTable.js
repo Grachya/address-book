@@ -1,12 +1,14 @@
 import React from 'react';
 import AddressRow from '../AddressRow/AddressRow';
+import AddressForm from '../AddressForm/AddressForm';
 import './AddressTable.scss';
 
 const initialNewAddressState = {
     id:"",
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    isEditing: false
 }
 
 class AddressTable extends React.Component {
@@ -14,25 +16,28 @@ class AddressTable extends React.Component {
         super(props)
         this.state = {
             addressList: [
-                {id:1, name: 'Галина Петровна', email: 'galina@ya.ru', phone:'89034567582'},
-                {id:2, name: 'Алла Михайловна', email: 'alla@ya.ru', phone:'89167658734'},
-                {id:3, name: 'Юлия Викторовна', email: 'yulia@ya.ru', phone:'89264567652'},
+                {id:1, name: 'Галина Петровна', email: 'galina@ya.ru', phone:'89034567582', isEditing: false },
+                {id:2, name: 'Алла Михайловна', email: 'alla@ya.ru', phone:'89167658734', isEditing: false },
+                {id:3, name: 'Юлия Викторовна', email: 'yulia@ya.ru', phone:'89264567652', isEditing: false },
             ],
             newAddress: {
                 id:"",
                 name: "",
                 email: "",
-                phone: ""
-            }
+                phone: "",
+                isEditing: false
+            },
         }
-        this.removeAdressById = this.removeAdressById.bind(this);
+        this.removeAddressById = this.removeAddressById.bind(this);
         this.addNewAddress = this.addNewAddress.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.toggleAddressEdit = this.toggleAddressEdit.bind(this);
+        this.handleEditingChange = this.handleEditingChange.bind(this);
     }
 
-    removeAdressById(addressId) {
-        let addressList = [...this.state.addressList];
-        let index = addressList.map(item => item.id).indexOf(addressId);
+    removeAddressById(addressId) {
+        const addressList = [...this.state.addressList];
+        const index = addressList.map(item => item.id).indexOf(addressId);
         addressList.splice(index, 1);
         this.setState({addressList: addressList});
     }
@@ -43,17 +48,25 @@ class AddressTable extends React.Component {
         });
     }
 
-    addNewAddress() {
+    addNewAddress(existingAddressId) {
         if(!this.state.newAddress.name) {
             alert('Не введено имя адресата!');
             return;
         }
-
-        const newAddressRow = {...this.state.newAddress};
-        this.setState((prevState) => ({
-            addressList: [...prevState.addressList, newAddressRow]
-        })); 
-        
+        if(existingAddressId) {
+            const addressList = [...this.state.addressList];
+            const editableAddress = addressList.find(item => item.id === existingAddressId);
+            Object.assign(editableAddress, {...this.state.newAddress});
+            this.setState({
+                addressList: addressList 
+            })
+        } else {
+            const newAddressRow = {...this.state.newAddress};
+            newAddressRow.id = this._getNewAddressId(); 
+            this.setState((prevState) => ({
+                addressList: [...prevState.addressList, newAddressRow]
+            }));
+        }
         this._resetNewAddressState();
     }
 
@@ -63,12 +76,33 @@ class AddressTable extends React.Component {
 
     handleChange(e) {
         const inputFieldName = e.target.name;
-        const inputFieldValue = e.target.value;
-        const newAddressId = this._getNewAddressId();  
-        const newAddressField = Object.assign({...this.state.newAddress}, {id: newAddressId}, { [inputFieldName]: inputFieldValue })
+        const inputFieldValue = e.target.value; 
+        const newAddressField = Object.assign({...this.state.newAddress}, { [inputFieldName]: inputFieldValue })
         this.setState({
             newAddress: newAddressField
         });
+    }
+
+    handleEditingChange(e) {
+        const inputFieldName = e.target.name;
+        const inputFieldValue = e.target.value; 
+        const editingId = parseInt(e.target.dataset.addressId)
+        this.setState(prevState => ({
+            addressList: prevState.addressList.map(
+                address => {
+                    return (address.id === editingId ? Object.assign(address, {[inputFieldName]:inputFieldValue}): address)
+                } 
+            )
+        }));
+    }
+
+    toggleAddressEdit(addressId) {
+        const addressList = [...this.state.addressList];
+        const address = addressList.find(item => item.id === addressId);
+        address.isEditing = !address.isEditing;
+        this.setState({
+            addressList: addressList
+        })
     }
 
     render() {
@@ -77,42 +111,21 @@ class AddressTable extends React.Component {
                 <tbody>
                     {this.state.addressList.map((address, index) => {
                         return (
-                            <AddressRow key={index} address={address} removeAdressById={this.removeAdressById}></AddressRow>
+                            <AddressRow 
+                                key={index} 
+                                address={address} 
+                                removeAddressById={this.removeAddressById}
+                                toggleAddressEdit={this.toggleAddressEdit}
+                                handleEditingChange={this.handleEditingChange}
+                                addNewAddress={this.addNewAddress}
+                            ></AddressRow>
                         )
                     })}
-                    <tr>
-                        <td className="table__data table__data--edit">
-                            <input 
-                                type="text" 
-                                placeholder="Имя отчество" 
-                                name="name" 
-                                id="name" 
-                                value={this.state.newAddress.name} 
-                                onChange={this.handleChange} />
-                        </td>
-                        <td className="table__data table__data--edit">
-                            <input 
-                                type="email" 
-                                placeholder="Email" 
-                                name="email" 
-                                id="email" 
-                                value={this.state.newAddress.email} 
-                                onChange={this.handleChange} />
-                        </td>
-                        <td className="table__data table__data--edit">
-                            <input 
-                                type="phone" 
-                                placeholder="Номер телфона" 
-                                name="phone" 
-                                id="phone"
-                                value={this.state.newAddress.phone} 
-                                onChange={this.handleChange}  
-                                />
-                        </td>
-                        <td className="table__data table__data--actions">
-                            <button onClick={() => {this.addNewAddress()}}>add</button>
-                        </td>
-                    </tr>
+                    <AddressForm 
+                        address={this.state.newAddress} 
+                        handleChange={this.handleChange}
+                        addNewAddress={this.addNewAddress}>
+                    </AddressForm>
                 </tbody>    
             </table>
         )

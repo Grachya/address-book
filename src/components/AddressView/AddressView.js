@@ -7,8 +7,8 @@ function AddressView (props) {
             <td className="table__data table__data--mail"><a href={"mailto:"+props.address.email}>{props.address.email}</a></td>
             <td className="table__data table__data--phone">{props.address.phone}</td>
             <td className="table__data table__data--actions">
-                <button>edit</button>
-                <button onClick={() => props.removeAdressById(props.address.id)}>remove {props.address.id}</button>
+                <button onClick={() => props.toggleAddressEdit(props.address.id)}>edit</button>
+                <button onClick={() => props.removeAddressById(props.address.id)}>remove {props.address.id}</button>
             </td>
         </tr>
     )
