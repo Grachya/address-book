@@ -3,4 +3,10 @@
     padding-left: 10px;
     box-sizing: border-box;
     height: 40px;
+
+    &[type='number']::-webkit-outer-spin-button,
+    &[type='number']::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 }

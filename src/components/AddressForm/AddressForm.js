@@ -2,6 +2,7 @@ import React from 'react';
 
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import InputMask from 'react-input-mask';
 
 function AddressForm(props) {
     return (
@@ -32,7 +33,7 @@ function AddressForm(props) {
             </td>
             <td className="table__data table__data--edit">
                 <Input
-                    type="phone"
+                    type="number"
                     placeholder="Номер телфона"
                     name="phone"
                     id="phone"
@@ -41,6 +42,7 @@ function AddressForm(props) {
                         props.handleChange(props.address.id, 'phone', e.target.value)
                     }
                 />
+                <InputMask mask="8(999) 999 99 99" maskChar=" " value={props.address.phone} />
             </td>
             <td className="table__data table__data--actions">
                 {props.address.isEditing ? (

@@ -1,10 +1,10 @@
 import React from 'react';
 import './Button.scss';
 
-import { ReactComponent as Cross } from '../../icons/cross.svg';
-import { ReactComponent as Correct } from '../../icons/correct.svg';
-import { ReactComponent as Edit } from '../../icons/edit.svg';
-import { ReactComponent as Plus } from '../../icons/plus.svg';
+import { ReactComponent as Cross } from '../../assets/icons/cross.svg';
+import { ReactComponent as Correct } from '../../assets/icons/correct.svg';
+import { ReactComponent as Edit } from '../../assets/icons/edit.svg';
+import { ReactComponent as Plus } from '../../assets/icons/plus.svg';
 
 function Button({ onClickHandler, text = '', icon }) {
     let buttonIcon;
