@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/address-book-page/static/css/main.4b4537cf.chunk.css",
-    "main.js": "/address-book-page/static/js/main.764de290.chunk.js",
-    "main.js.map": "/address-book-page/static/js/main.764de290.chunk.js.map",
-    "runtime-main.js": "/address-book-page/static/js/runtime-main.52204bdb.js",
-    "runtime-main.js.map": "/address-book-page/static/js/runtime-main.52204bdb.js.map",
-    "static/js/2.8ebddf0e.chunk.js": "/address-book-page/static/js/2.8ebddf0e.chunk.js",
-    "static/js/2.8ebddf0e.chunk.js.map": "/address-book-page/static/js/2.8ebddf0e.chunk.js.map",
-    "index.html": "/address-book-page/index.html",
-    "precache-manifest.7fcce441c4c6edba93ddcb356a60bc90.js": "/address-book-page/precache-manifest.7fcce441c4c6edba93ddcb356a60bc90.js",
-    "service-worker.js": "/address-book-page/service-worker.js",
-    "static/css/main.4b4537cf.chunk.css.map": "/address-book-page/static/css/main.4b4537cf.chunk.css.map",
-    "static/js/2.8ebddf0e.chunk.js.LICENSE.txt": "/address-book-page/static/js/2.8ebddf0e.chunk.js.LICENSE.txt",
-    "static/media/correct.5abde196.svg": "/address-book-page/static/media/correct.5abde196.svg",
-    "static/media/cross.f686e0af.svg": "/address-book-page/static/media/cross.f686e0af.svg",
-    "static/media/edit.4959a48f.svg": "/address-book-page/static/media/edit.4959a48f.svg",
-    "static/media/plus.75dc4d44.svg": "/address-book-page/static/media/plus.75dc4d44.svg"
+    "main.css": "/address-book/static/css/main.4b4537cf.chunk.css",
+    "main.js": "/address-book/static/js/main.64be8dbc.chunk.js",
+    "main.js.map": "/address-book/static/js/main.64be8dbc.chunk.js.map",
+    "runtime-main.js": "/address-book/static/js/runtime-main.9cf7cf23.js",
+    "runtime-main.js.map": "/address-book/static/js/runtime-main.9cf7cf23.js.map",
+    "static/js/2.8ebddf0e.chunk.js": "/address-book/static/js/2.8ebddf0e.chunk.js",
+    "static/js/2.8ebddf0e.chunk.js.map": "/address-book/static/js/2.8ebddf0e.chunk.js.map",
+    "index.html": "/address-book/index.html",
+    "precache-manifest.1d5702e396006f612740b56906329bbb.js": "/address-book/precache-manifest.1d5702e396006f612740b56906329bbb.js",
+    "service-worker.js": "/address-book/service-worker.js",
+    "static/css/main.4b4537cf.chunk.css.map": "/address-book/static/css/main.4b4537cf.chunk.css.map",
+    "static/js/2.8ebddf0e.chunk.js.LICENSE.txt": "/address-book/static/js/2.8ebddf0e.chunk.js.LICENSE.txt",
+    "static/media/correct.5abde196.svg": "/address-book/static/media/correct.5abde196.svg",
+    "static/media/cross.f686e0af.svg": "/address-book/static/media/cross.f686e0af.svg",
+    "static/media/edit.4959a48f.svg": "/address-book/static/media/edit.4959a48f.svg",
+    "static/media/plus.75dc4d44.svg": "/address-book/static/media/plus.75dc4d44.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.52204bdb.js",
+    "static/js/runtime-main.9cf7cf23.js",
     "static/js/2.8ebddf0e.chunk.js",
     "static/css/main.4b4537cf.chunk.css",
-    "static/js/main.764de290.chunk.js"
+    "static/js/main.64be8dbc.chunk.js"
   ]
 }
