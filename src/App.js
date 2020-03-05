@@ -1,15 +1,15 @@
 import React from 'react';
 import AddressTable from './components/AddressTable/AddressTable';
 
-import './App.scss'
+import './App.scss';
 
 function App() {
-  return (
-    <div className="app">
-      <h1>Адресная книга</h1>
-      <AddressTable></AddressTable>
-    </div>
-  );
+    return (
+        <div className="app">
+            <h1>Адресная книга</h1>
+            <AddressTable></AddressTable>
+        </div>
+    );
 }
 
 export default App;

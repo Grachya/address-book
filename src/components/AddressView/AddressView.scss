@@ -1,27 +1,27 @@
 @import '../../common-styles/variables.scss';
 
 .table {
-  &__data {
-    border: 1px solid $border-color;
-    padding: 10px;
+    &__data {
+        border: 1px solid $border-color;
+        padding: 10px;
 
-    &:first-child {
-      border-left: none;
+        &:first-child {
+            border-left: none;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+
+        &--name {
+            width: 40%;
+        }
+
+        &--mail,
+        &--phone,
+        &--actions {
+            width: 20%;
+            text-align: center;
+        }
     }
-
-    &:last-child {
-      border-right: none;
-    }
-
-    &--name {
-      width: 40%;
-    }
-
-    &--mail,
-    &--phone,
-    &--actions {
-      width: 20%;
-      text-align: center;
-    } 
-  }
 }

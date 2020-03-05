@@ -1,18 +1,18 @@
 import React from 'react';
 import './Input.scss';
 
-function Input ({type, placeholder, name, id, value, onChangeHandler}) {
-    return(
-        <input 
+function Input({ type, placeholder, name, id, value, onChangeHandler }) {
+    return (
+        <input
             className="input"
-            type={type} 
+            type={type}
             placeholder={placeholder}
-            name={name} 
+            name={name}
             id={id}
-            value={value} 
-            onChange={(e) => onChangeHandler(e)} 
+            value={value}
+            onChange={e => onChangeHandler(e)}
         />
-    )
+    );
 }
 
 export default Input;
