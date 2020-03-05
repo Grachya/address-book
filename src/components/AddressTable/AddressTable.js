@@ -30,9 +30,8 @@ class AddressTable extends React.Component {
         }
         this.removeAddressById = this.removeAddressById.bind(this);
         this.addNewAddress = this.addNewAddress.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.toggleAddressEdit = this.toggleAddressEdit.bind(this);
-        this.handleEditingChange = this.handleEditingChange.bind(this);
     }
 
     removeAddressById(addressId) {
@@ -74,26 +73,21 @@ class AddressTable extends React.Component {
         return this.state.addressList.length ? this.state.addressList[this.state.addressList.length - 1].id + 1 : 1;
     }
 
-    handleChange(e) {
-        const inputFieldName = e.target.name;
-        const inputFieldValue = e.target.value; 
-        const newAddressField = Object.assign({...this.state.newAddress}, { [inputFieldName]: inputFieldValue })
-        this.setState({
-            newAddress: newAddressField
-        });
-    }
-
-    handleEditingChange(e) {
-        const inputFieldName = e.target.name;
-        const inputFieldValue = e.target.value; 
-        const editingId = parseInt(e.target.dataset.addressId)
-        this.setState(prevState => ({
-            addressList: prevState.addressList.map(
-                address => {
-                    return (address.id === editingId ? Object.assign(address, {[inputFieldName]:inputFieldValue}): address)
-                } 
-            )
-        }));
+    handleInputChange(addressId, inputFieldName, inputFieldValue) {
+        if(addressId) {
+            this.setState(prevState => ({
+                addressList: prevState.addressList.map(
+                    address => {
+                        return (address.id === addressId ? Object.assign(address, {[inputFieldName]:inputFieldValue}): address)
+                    } 
+                )
+            }));
+        } else {
+            const newAddressField = Object.assign({...this.state.newAddress}, { [inputFieldName]: inputFieldValue });
+            this.setState({
+                newAddress: newAddressField
+            });
+        }
     }
 
     toggleAddressEdit(addressId) {
@@ -116,14 +110,14 @@ class AddressTable extends React.Component {
                                 address={address} 
                                 removeAddressById={this.removeAddressById}
                                 toggleAddressEdit={this.toggleAddressEdit}
-                                handleEditingChange={this.handleEditingChange}
+                                handleEditingChange={this.handleInputChange}
                                 addNewAddress={this.addNewAddress}
                             ></AddressRow>
                         )
                     })}
                     <AddressForm 
                         address={this.state.newAddress} 
-                        handleChange={this.handleChange}
+                        handleChange={this.handleInputChange}
                         addNewAddress={this.addNewAddress}>
                     </AddressForm>
                 </tbody>    

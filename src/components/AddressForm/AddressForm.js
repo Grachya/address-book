@@ -1,42 +1,40 @@
 import React from 'react';
 
 import Button from '../Button/Button';
+import Input from '../Input/Input';
 
 function AddressForm (props) {
     return(
         <tr>
             <td className="table__data table__data--edit">
-                <input 
-                    type="text" 
-                    placeholder="Имя отчество" 
-                    name="name" 
+                <Input 
+                    type='text'
+                    placeholder="Имя отчество"
+                    name="name"
                     id="name"
-                    data-address-id={props.address.id} 
-                    value={props.address.name} 
-                    onChange={(e) => props.handleChange(e)} 
-                    />
+                    value={props.address.name}
+                    onChangeHandler={(e) => props.handleChange(props.address.id, "name", e.target.value)} 
+                />
             </td>
             <td className="table__data table__data--edit">
-                <input 
-                    type="email" 
-                    placeholder="Email" 
-                    name="email" 
+                <Input 
+                    type='email'
+                    placeholder="Email"
+                    name="email"
                     id="email"
-                    data-address-id={props.address.id} 
-                    value={props.address.email} 
-                    onChange={(e) => props.handleChange(e)} 
-                    />
+                    value={props.address.email}
+                    onChangeHandler={(e) => props.handleChange(props.address.id, "email", e.target.value)} 
+                />
             </td>
             <td className="table__data table__data--edit">
-                <input 
-                    type="phone" 
-                    placeholder="Номер телфона" 
-                    name="phone" 
+                <Input 
+                    type='phone'
+                    placeholder="Номер телфона"
+                    name="phone"
                     id="phone"
-                    data-address-id={props.address.id}
-                    value={props.address.phone} 
-                    onChange={(e) => props.handleChange(e)}  
-                    />
+                    value={props.address.phone}
+                    onChangeHandler={(e) => props.handleChange(props.address.id, "phone", e.target.value)} 
+                />
             </td>
             <td className="table__data table__data--actions">
                 {

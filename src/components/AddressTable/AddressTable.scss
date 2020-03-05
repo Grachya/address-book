@@ -3,10 +3,11 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-
   &__data {
     border: 1px solid $border-color;
     padding: 10px;
+    box-sizing: border-box;
+    height: 66px;
 
     &:first-child {
       border-left: none;
